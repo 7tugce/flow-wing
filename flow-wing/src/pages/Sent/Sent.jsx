@@ -4,14 +4,13 @@ import { Link } from "react-router-dom"
 import Divider from "@mui/material/Divider"
 import "./sent.css"
 import { excerpt, getText } from "../../helpers"
-import {  getSentMails } from "../../services/emailService"
+import { getSentMails } from "../../services/emailService"
 import EmptyPage from "../../components/EmptyPage"
 import { Avatar } from "antd"
 
 const Sent = () => {
   const [sentMails, setSentMails] = useState([])
   const [mailCount, setMailCount] = useState(0)
-
 
   // get sent emails
   useEffect(() => {
@@ -30,8 +29,23 @@ const Sent = () => {
     return <EmptyPage />
   }
   // COLOR ARRAY FOR HR ELEMENT
-  const colors = ["#C0440E", "#3498db", "#27ae60", "#f39c12", "#8e44ad"]
 
+  const colors = [
+    "#d10ce8 ",
+    "#ff4560",
+    "#008ffb",
+    "#191970",
+    "#775dd0",
+    "#01e396 ",
+    "#ffa07a ",
+    "#feb019 ",
+    "#546e7a ",
+    "#add8e6 ",
+    "#34c38f ",
+    "#d98b49 ",
+    "#bf1ad2 ",
+    "#21b15a "
+  ]
 
   return (
     <div className="sent-mail-page-content">

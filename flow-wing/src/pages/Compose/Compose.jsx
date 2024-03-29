@@ -45,6 +45,8 @@ const Compose = () => {
   }
   const handleCancel = () => {
     setIsModalOpen(false)
+    handleCheck
+
   }
   const navigate = useNavigate()
   // GET USER

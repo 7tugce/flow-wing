@@ -102,18 +102,14 @@ const Inbox = () => {
     })
     //console.log("answer for reply mail id", mail.answer)
     getEmailAndAnswersByEmailLogId(id).then((response) => {
-      console.log(
-        "info endpoint res :",
-        response.data
-      )
+      console.log("info endpoint res :", response.data)
       setForwardedMailAttachments(response.data.forwardedEmailAttacments)
-      console.log("forwrd atchmnts ",response.data.forwardedEmailAttacments )
-      console.log("forwrd atchmnts ",forwardedMailAttachments )
+
       setAnswerArray(response.data.answers)
-      // console.log("forwarded mail ", response.data.forwardedEmailLog)
+      console.log("setAnswerArray ", response.data.answers)
       setForwardedFrom(response.data.forwardedEmailLog)
       console.log(" answer : ", response.data.answer)
-      setAnswer(response.data.answer)
+      setAnswer(response.data.emailLog.answer)
       //console.log("answer emaillog ", answer?.emailLog?.sentEmailBody)
       setForwardedMailId(response.data.emailLog.forwardedFrom)
       // console.log("forwarded mail id", forwardedMailId)
@@ -125,6 +121,7 @@ const Inbox = () => {
       setForwardedMailId(res.data.emailLog.forwardedFrom)
     })
 
+   // console.log("answerArrayin attchmnt infosu", answerArray.map(answer=>{answer.attachmentInfos?.map(attachmentInfo=>console.log(attachmentInfo))})) //4. elemanın atchmnt'ı olduğu için geliyor burası
     return () => {}
   }, [mail?.forwardedFrom])
 
@@ -134,36 +131,33 @@ const Inbox = () => {
   }
   // DELETE AN EMAIL
   const handleDelete = () => {
+    if (mail.isScheduled === true) {
+      deleteScheduledEmail(mail.id).then((res) => {
+        console.log(res)
 
-if (mail.isScheduled=== true){
-deleteScheduledEmail(mail.id).then((res) => {
-  console.log(res)
+        if (res.status === 200) {
+          alertify.success("Mail silindi.")
+        } else alertify.error(res.message)
+        navigate(HOME_ROUTE)
+      })
+    } else if (mail.repeatingLogId !== null) {
+      deleteRepeatingEmail(mail.id).then((res) => {
+        console.log(res)
 
-  if (res.status === 200) {
-    alertify.success("Mail silindi.")
-  } else alertify.error(res.message)
-  navigate(HOME_ROUTE)
-})
-}
-else if(mail.repeatingLogId !==null)
-{
-deleteRepeatingEmail(mail.id).then((res) => {
-  console.log(res)
+        if (res.status === 200) {
+          alertify.success("Mail silindi.")
+        } else alertify.error(res.message)
+        navigate(HOME_ROUTE)
+      })
+    } else
+      deleteSentEmail(mail.id).then((res) => {
+        console.log(res)
 
-  if (res.status === 200) {
-    alertify.success("Mail silindi.")
-  } else alertify.error(res.message)
-  navigate(HOME_ROUTE)
-})
-} else
-    deleteSentEmail(mail.id).then((res) => {
-      console.log(res)
-
-      if (res.status === 200) {
-        alertify.success("Mail silindi.")
-      } else alertify.error(res.message)
-      navigate(HOME_ROUTE)
-    })
+        if (res.status === 200) {
+          alertify.success("Mail silindi.")
+        } else alertify.error(res.message)
+        navigate(HOME_ROUTE)
+      })
   }
 
   // REPLY AN EMAIL
@@ -294,7 +288,12 @@ deleteRepeatingEmail(mail.id).then((res) => {
         <Tooltip title="Yanıtla" arrow onClick={showModal}>
           <div className="icons">
             <button className="mail-action-btns">
-              <Icon icon="ic:round-reply" width="30" height="30" color="#ffa07a "/>
+              <Icon
+                icon="ic:round-reply"
+                width="30"
+                height="30"
+                color="#ffa07a "
+              />
             </button>
           </div>{" "}
         </Tooltip>
@@ -359,7 +358,12 @@ deleteRepeatingEmail(mail.id).then((res) => {
         <Tooltip title="Sil" arrow>
           <div className="icons">
             <button className="mail-action-btns" onClick={handleDelete}>
-              <Icon icon="iconoir:trash-solid" width="25" height="25" color="#ff4560 "/>
+              <Icon
+                icon="iconoir:trash-solid"
+                width="25"
+                height="25"
+                color="#ff4560 "
+              />
             </button>
           </div>
         </Tooltip>
@@ -368,7 +372,7 @@ deleteRepeatingEmail(mail.id).then((res) => {
       {/* MAIL SECTION */}
       <div className="mail-sender">
         <div className="user-icon-inbox">
-        <Avatar
+          <Avatar
             size={64}
             style={{ backgroundColor: "#191970 ", color: "#add8e6 " }}
           >
@@ -456,7 +460,12 @@ deleteRepeatingEmail(mail.id).then((res) => {
                   document.body.removeChild(link)
                 }}
               >
-                <Icon icon="material-symbols:download" width="30" height="30"  style={{color:"#546e7a "}} />
+                <Icon
+                  icon="material-symbols:download"
+                  width="30"
+                  height="30"
+                  style={{ color: "#546e7a " }}
+                />
               </button>
               {}{" "}
             </div>
@@ -551,8 +560,13 @@ deleteRepeatingEmail(mail.id).then((res) => {
               <Tooltip title="Yanıtla" arrow onClick={showModal}>
                 <div className="icons">
                   <button className="mail-action-btns">
-                  <Icon icon="ic:round-reply" width="30" height="30" color="#ffa07a "/>
-             </button>
+                    <Icon
+                      icon="ic:round-reply"
+                      width="30"
+                      height="30"
+                      color="#ffa07a "
+                    />
+                  </button>
                 </div>{" "}
               </Tooltip>
               {/* MODAL FOR REPLY EMAIL */}
@@ -619,27 +633,32 @@ deleteRepeatingEmail(mail.id).then((res) => {
               <Tooltip title="Sil" arrow>
                 <div className="icons">
                   <button className="mail-action-btns" onClick={handleDelete}>
-                  <Icon icon="iconoir:trash-solid" width="25" height="25" color="#ff4560 "/>
-           </button>
+                    <Icon
+                      icon="iconoir:trash-solid"
+                      width="25"
+                      height="25"
+                      color="#ff4560 "
+                    />
+                  </button>
                 </div>
               </Tooltip>
             </div>
 
             <div className="mail-sender">
               <div className="user-icon-inbox">
-              <Avatar
-            size={64}
-            style={{ backgroundColor: "#191970 ", color: "#add8e6 " }}
-          >
+                <Avatar
+                  size={64}
+                  style={{ backgroundColor: "#191970 ", color: "#add8e6 " }}
+                >
                   <span>{user.charAt(0)}</span>
                 </Avatar>
               </div>
               <div>
-              <div className="mail-sender-email">
-                 from: {answer?.emailLog.senderEmail}
+                <div className="mail-sender-email">
+                  from: {answer?.emailLog.senderEmail}
                 </div>
                 <div className="mail-sender-email">
-                 to: {answer?.emailLog.recipientsEmail}
+                  to: {answer?.emailLog.recipientsEmail}
                 </div>
               </div>
             </div>
@@ -647,15 +666,17 @@ deleteRepeatingEmail(mail.id).then((res) => {
             <div className="mail-title">
               <p>{answer?.emailLog.emailSubject}</p>
             </div>
-
-            <p
-              dangerouslySetInnerHTML={{
-                __html: getText(answer?.emailLog.sentEmailBody)
-              }}
-            />
+            <div className="mail-subject">
+              <p
+                className="mail-answer-mail-body"
+                dangerouslySetInnerHTML={{
+                  __html: getText(answer?.emailLog.sentEmailBody)
+                }}
+              />
+            </div>
           </div>{" "}
           {/* MAIL ANSWERS ATTACHMENTS */}
-          {answerArray[0]?.attachmentInfos?.map((attachments) => (
+          {answer.attachmentInfos?.map((attachments) => (
             <div className="inbox-mail-attachment">
               <div>
                 {" "}
@@ -722,32 +743,54 @@ deleteRepeatingEmail(mail.id).then((res) => {
                     document.body.removeChild(link)
                   }}
                 >
-              
-              <Icon icon="material-symbols:download" width="30" height="30"  style={{color:"#546e7a "}} />
+                  <Icon
+                    icon="material-symbols:download"
+                    width="30"
+                    height="30"
+                    style={{ color: "#546e7a " }}
+                  />
                 </button>
               </div>
               {}{" "}
             </div>
           ))}
+           
+             
+           
+            
+          
           <Divider />
         </div>
       ))}
-      
-{/* IS FORWARDED SECTION */}
+
+      {/* IS FORWARDED SECTION */}
 
       {forwardedFrom ? (
         <div className="forwarded-from-section">
-         <div> <span>----- Şu mesaj iletildi -----</span></div>
-         <div><span>Gönderen:  </span><p>{forwardedFrom.senderEmail}</p> </div>
-         <div>  <span>Tarih: </span><p> {formatDate(forwardedFrom.sentDateTime)}</p></div> 
-         <div><span>Konu: </span><p> {forwardedFrom.emailSubject}</p></div>  
+          <div>
+            {" "}
+            <span>----- Şu mesaj iletildi -----</span>
+          </div>
+          <div>
+            <span>Gönderen: </span>
+            <p>{forwardedFrom.senderEmail}</p>{" "}
+          </div>
+          <div>
+            {" "}
+            <span>Tarih: </span>
+            <p> {formatDate(forwardedFrom.sentDateTime)}</p>
+          </div>
+          <div>
+            <span>Konu: </span>
+            <p> {forwardedFrom.emailSubject}</p>
+          </div>
           <p
             dangerouslySetInnerHTML={{
               __html: getText(forwardedFrom.sentEmailBody)
             }}
           />
           {/* FORWARDED FROMS ATTACHMENT SECTION */}
-          {forwardedFrom.attachmentInfos?.map((attachments) => (
+          {forwardedMailAttachments?.map((attachments) => (
             <div className="inbox-mail-attachment">
               <div>
                 {" "}
@@ -801,7 +844,8 @@ deleteRepeatingEmail(mail.id).then((res) => {
                       {attachments.fileName}
                     </a>
                   </div>
-                )}  {/* İndirme Düğmesi */}
+                )}{" "}
+                {/* İndirme Düğmesi */}
                 <button
                   className="attachment-download-btn"
                   onClick={() => {
@@ -813,8 +857,12 @@ deleteRepeatingEmail(mail.id).then((res) => {
                     document.body.removeChild(link)
                   }}
                 >
-                 
-                <Icon icon="material-symbols:download" width="30" height="30"  style={{color:"#546e7a "}} />
+                  <Icon
+                    icon="material-symbols:download"
+                    width="30"
+                    height="30"
+                    style={{ color: "#546e7a " }}
+                  />
                 </button>
               </div>
               {}{" "}

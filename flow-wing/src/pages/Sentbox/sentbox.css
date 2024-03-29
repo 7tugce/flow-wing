@@ -1,20 +1,21 @@
-.mail-answer-title{
-          color:#191970  ;
-          font-weight: bold;
+.mail-answer-title {
+  color: #191970;
+  font-weight: bold;
 }
-.mail-answer-mail-body{
-margin-right: 30px;
+.mail-answer-mail-body {
+  margin-right: 30px;
 }
-.forwarded-from-section{
-          display: flex;
-          flex-direction: column;
+.forwarded-from-section {
+  display: flex;
+  flex-direction: column;
 }
-.forwarded-from-section span{
-          color: #191970;
-          font-weight: bold;
-          margin-top: 16px;
-          margin-right: 5px;
-}.forwarded-from-section div{
-          display: flex;
-          flex-direction: row;
+.forwarded-from-section span {
+  color: #191970;
+  font-weight: bold;
+  margin-top: 16px;
+  margin-right: 5px;
+}
+.forwarded-from-section div {
+  display: flex;
+  flex-direction: row;
 }

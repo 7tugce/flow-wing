@@ -58,11 +58,11 @@ const getAllUsers = () => {
 const deleteSentEmail = (id) => {
   return apiAxios.delete("EmailLogs/" + id)
 }
-const deleteScheduledEmail=(id)=>{
+const deleteScheduledEmail = (id) => {
   return apiAxios.delete("ScheduledEmails/ScheduledEmail/" + id)
 }
-const deleteRepeatingEmail=(id)=>{
-  return apiAxios.delete("ScheduledEmails/ScheduledRepeatingEmail/"+ id )
+const deleteRepeatingEmail = (id) => {
+  return apiAxios.delete("ScheduledEmails/ScheduledRepeatingEmail/" + id)
 }
 const getEmailById = (id) => {
   return apiAxios.get("EmailLogs/" + id)
@@ -105,6 +105,15 @@ const forwardEmail = (values) => {
 const getEmailAndAnswersByEmailLogId = (id) => {
   return apiAxios.get("EmailLogs/GetEmailAndAnswersByEmailLogId/" + id)
 }
+
+
+const getUserSentDeletedEmails=()=>{
+  return apiAxios.get("EmailLogs/GetUserSenDeletedtEmails")
+}
+const getUserReceivedDeletedEmails=()=>{
+  return apiAxios.get("EmailLogs/GetUserReceivedDeletedEmails")
+}
+
 export {
   getAllUsers,
   getEmailById,
@@ -120,5 +129,7 @@ export {
   getForwardedMailById,
   getEmailAndAnswersByEmailLogId,
   deleteScheduledEmail,
-  deleteRepeatingEmail
+  deleteRepeatingEmail,
+  getUserSentDeletedEmails,
+  getUserReceivedDeletedEmails
 }

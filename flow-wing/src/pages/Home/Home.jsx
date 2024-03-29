@@ -7,11 +7,12 @@ import EmptyPage from "../../components/EmptyPage"
 import { getMails } from "../../services/emailService"
 import { excerpt, getText } from "../../helpers"
 import { Avatar } from "antd"
+import Loading from "../../components/Loading"
 
 const Home = () => {
-  const [mails, setMails] = useState([])
-  const [mailCount, setMailCount] = useState(0)
-  const [sender, setSender] = useState([])
+  const [mails, setMails] = useState([]);
+  const [mailCount, setMailCount] = useState(0);
+  const [sender, setSender] = useState([]);
 
   // Get all e-mails
   useEffect(() => {
@@ -19,16 +20,16 @@ const Home = () => {
       const sortedMails = response.data.userEmails.sort(
         (a, b) =>
           new Date(b.emailLog.sentDateTime) - new Date(a.emailLog.sentDateTime)
-      )
+      );
 
-      setMails(sortedMails)
-      console.log("home response", response.data.userEmails)
-      setMailCount(response.data.userEmails.length)
+      setMails(sortedMails);
+      setMailCount(response.data.userEmails.length);
 
-      response.data.userEmails.map((mail) => setSender(mail.sender))
-      console.log("home senders", sender)
-    })
-  }, [mailCount])
+      response.data.userEmails.map((mail) => setSender(mail.sender));
+     
+    });
+  }, [mailCount]);
+
 
   // COLOR ARRAY FOR HR ELEMENT
   const colors = [
@@ -51,6 +52,7 @@ const Home = () => {
   if (mailCount === 0) {
     return <EmptyPage />
   }
+
   return (
     <div className="sent-mail-page-content">
       <h2>{mailCount} mesaj</h2>

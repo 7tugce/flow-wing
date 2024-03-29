@@ -90,6 +90,10 @@
 }
 .mail-answer-content {
   padding-left: 30px;
+  max-width: 600px;
+}
+.mail-answer-mail-body {
+  max-width: 600px;
 }
 .forward-modal-form span {
   display: flex;

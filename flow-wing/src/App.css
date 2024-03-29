@@ -2,10 +2,9 @@ body,
 html {
   height: 100%;
   margin: 0;
-font-family: "Encode Sans", sans-serif;
+  font-family: "Encode Sans", sans-serif;
   font-optical-sizing: auto;
 
   font-style: normal;
-  font-variation-settings:
-    "wdth" 100;
+  font-variation-settings: "wdth" 100;
 }
