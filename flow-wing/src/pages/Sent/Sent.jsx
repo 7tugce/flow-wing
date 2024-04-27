@@ -101,7 +101,7 @@ const Sent = () => {
                       </div>
                     </div>
                     <div className="inbox-mail-title">
-                      {item.emailLog.emailSubject}
+                      {excerpt(item.emailLog.emailSubject,40)}
                     </div>
                     <div className="inbox-mail-body">
                       <p

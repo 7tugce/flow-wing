@@ -7,7 +7,6 @@ import {
   getEmailAndAnswersByEmailLogId,
   getEmailById,
   getForwardedMailById,
-  getMailAnswersById,
   replyMail
 } from "../../services/emailService"
 import Spinner from "../../components/Spinner"
@@ -32,7 +31,6 @@ const Sentbox = () => {
   const [forwardedEmailMessage, setForwardedEmailMessage] = useState("")
   const [forwardedMailId, setForwardedMailId] = useState("")
   const [forwardedFrom, setForwardedFrom] = useState("")
-  const [users, setUsers] = useState([])
   const [replyAttachment, setReplyAttachment] = useState("")
   const [answerArray, setAnswerArray] = useState([])
   const [forwardedMailAttachments, setForwardedMailAttachments] = useState([])

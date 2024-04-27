@@ -4,6 +4,7 @@ import { Link } from "react-router-dom"
 import { Avatar, Divider } from "antd"
 import { excerpt, getText } from "../../helpers"
 import { Icon } from "@iconify/react"
+import Spinner from "../../components/Spinner"
 
 const Trash = () => {
   const [deletedSentMails,setDeletedSentMails]=useState([])
@@ -40,7 +41,10 @@ useEffect(()=>{
     setDeletedSentMails(response.data.userEmails)
   }).catch(error=>{console.log(error)})
 },[])
-
+// SPINNER
+if (!mails) {
+  return <Spinner />
+}
   return (
     <div className="sent-mail-page-content">
       <h2>Çöp Kutusu</h2>

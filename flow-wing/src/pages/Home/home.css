@@ -30,6 +30,7 @@
   width: 100%;
   border-radius: 10px;
   min-height: 30px;
+ /* max-height: 160px;*/
   padding: 10px;
   border-left: 1px;
 }
@@ -80,6 +81,10 @@
 }
 .inbox-mail-body {
   color: #424769;
+}
+.inbox-mail-body p{
+  max-height: 40px;
+  overflow: hidden;
 }
 .mail-attachment {
   border: 0.5px solid;
