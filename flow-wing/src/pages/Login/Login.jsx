@@ -17,7 +17,7 @@ const Login = () => {
   // login handler function
   const handleLogin = (values) => {
     dispatch(loginUser(values)).then((result) => {
-      console.log(result)
+      //console.log(result)
       if (result.payload) {
         navigate("/home")
       }

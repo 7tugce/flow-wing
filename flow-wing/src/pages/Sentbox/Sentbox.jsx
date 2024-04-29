@@ -90,35 +90,35 @@ const Sentbox = () => {
       //console.log("get mail by id", res.data)
 
       setAttachments(res.data.attachments)
-      console.log("attachment: ", res.data.attachments)
-      console.log("attachment2: ", attachments)
+     // console.log("attachment: ", res.data.attachments)
+     // console.log("attachment2: ", attachments)
       setSender(res.data.sender)
       //console.log("mail sender", sender)
       setUser(res.data.emailLog.user.username)
     })
 
     getEmailAndAnswersByEmailLogId(id).then((response) => {
-      console.log("info endpoint :", response)
+    //  console.log("info endpoint :", response)
 
       setForwardedMailAttachments(response.data.forwardedEmailAttacments)
-      console.log("forwrd atchmnts ", response.data.forwardedEmailAttacments)
-      console.log("forwrd atchmnts ", forwardedMailAttachments)
+    //  console.log("forwrd atchmnts ", response.data.forwardedEmailAttacments)
+    //  console.log("forwrd atchmnts ", forwardedMailAttachments)
 
-      console.log("info endpoint answers :", response.data.answers)
+    //  console.log("info endpoint answers :", response.data.answers)
       setAnswerArray(response.data.answers)
-      console.log("setAnswerArray'e gönderilen ", response.data.answers)
-      console.log("answers attvchmrnt", answerArray.attachmentInfos)
-      console.log("forwarded mail ", response.data.forwardedEmailLog)
+    //  console.log("setAnswerArray'e gönderilen ", response.data.answers)
+    //  console.log("answers attvchmrnt", answerArray.attachmentInfos)
+     // console.log("forwarded mail ", response.data.forwardedEmailLog)
       setForwardedFrom(response.data.forwardedEmailLog)
-      console.log(" answer : ", response.data.emailLog.answer)
+    //  console.log(" answer : ", response.data.emailLog.answer)
       setAnswer(response.data.emailLog.answer)
-      console.log("answer emaillog ", answer?.emailLog?.sentEmailBody)
+     // console.log("answer emaillog ", answer?.emailLog?.sentEmailBody)
       setForwardedMailId(response.data.emailLog.forwardedFrom)
-      console.log("forwarded mail id", forwardedMailId)
+     // console.log("forwarded mail id", forwardedMailId)
     })
 
     getForwardedMailById(forwardedMailId).then((res) => {
-      console.log("forwarded mail ", res.data.forwardedEmailLog)
+     // console.log("forwarded mail ", res.data.forwardedEmailLog)
       setForwardedFrom(res.data.emailLog)
       setForwardedMailId(res.data.emailLog.forwardedFrom)
     })
@@ -133,7 +133,7 @@ const Sentbox = () => {
   // DELETE AN EMAIL
   const handleDelete = () => {
     deleteSentEmail(mail.id).then((res) => {
-      console.log(res)
+      //console.log(res)
       if (res.status === 200) {
         alertify.success("Mail silindi")
       } else alertify.error(res.message)
@@ -179,9 +179,9 @@ const Sentbox = () => {
       ForwardedEmailId: mail.id,
       file: []
     }
-    console.log("handleForward'ın içindesin")
+   // console.log("handleForward'ın içindesin")
     forwardEmail(values).then((res) => {
-      console.log("forward mail fonksiyonunun içindesin")
+      //console.log("forward mail fonksiyonunun içindesin")
       if (res.status === 201) {
         alertify.success("Mail iletildi")
       } else alertify.error(res.message)

@@ -60,7 +60,7 @@ const Compose = () => {
     } else {
       formData == []
     }
-    console.log("values:", values, "form data ", formData)
+    //console.log("values:", values, "form data ", formData)
     const res = await sendMail(values, formData)
     if (res.status === 201) {
       alertify.success("Mail Gönderildi")
@@ -95,24 +95,24 @@ const Compose = () => {
 
   const onDateSelect = (value) => {
     formik.setFieldValue("nextSendingDate", dayjs(value))
-    console.log("next sending date seçildi", value)
+    //console.log("next sending date seçildi", value)
   }
 
   const onRepeatIntervalDateSelect = (value) => {
     // Burada seçilen değeri formik formunun değerlerine ekleyin
     formik.setFieldValue("repeatInterval", value)
-    console.log("repeat interval date seçildi", value)
+    //console.log("repeat interval date seçildi", value)
   }
 
   const onRepeatEndDateSelect = (value) => {
     formik.setFieldValue("repeatEndDate", dayjs(value))
-    console.log("repeat ending date seçildi", value)
+    //console.log("repeat ending date seçildi", value)
   }
 
   const onSendDateTimeSelect = (value) => {
     setIsScheduled(true)
     formik.setFieldValue("sentDateTime", dayjs(value))
-    console.log("schedule send date seçildi", value)
+    //console.log("schedule send date seçildi", value)
   }
   //Yup validation schema
   const validationSchema = Yup.object().shape({
@@ -174,7 +174,7 @@ const Compose = () => {
   // CHECKBOX
   const handleCheck = (event) => {
     if (event.target.checked) {
-      console.log("Checkbox işaretlendi")
+      //console.log("Checkbox işaretlendi")
       setIsRepeating(true)
       showModal()
     }

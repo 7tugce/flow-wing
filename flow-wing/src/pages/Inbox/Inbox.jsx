@@ -102,13 +102,13 @@ const Inbox = () => {
     })
     //console.log("answer for reply mail id", mail.answer)
     getEmailAndAnswersByEmailLogId(id).then((response) => {
-      console.log("info endpoint res :", response.data)
+      //console.log("info endpoint res :", response.data)
       setForwardedMailAttachments(response.data.forwardedEmailAttacments)
 
       setAnswerArray(response.data.answers)
-      console.log("setAnswerArray ", response.data.answers)
+      //console.log("setAnswerArray ", response.data.answers)
       setForwardedFrom(response.data.forwardedEmailLog)
-      console.log(" answer : ", response.data.answer)
+      //console.log(" answer : ", response.data.answer)
       setAnswer(response.data.emailLog.answer)
       //console.log("answer emaillog ", answer?.emailLog?.sentEmailBody)
       setForwardedMailId(response.data.emailLog.forwardedFrom)
@@ -116,7 +116,7 @@ const Inbox = () => {
     })
 
     getForwardedMailById(forwardedMailId).then((res) => {
-      console.log("forwarded mail ", res.data.forwardedEmailLog)
+    //  console.log("forwarded mail ", res.data.forwardedEmailLog)
       setForwardedFrom(res.data.emailLog)
       setForwardedMailId(res.data.emailLog.forwardedFrom)
     })
@@ -133,7 +133,7 @@ const Inbox = () => {
   const handleDelete = () => {
     if (mail.isScheduled === true) {
       deleteScheduledEmail(mail.id).then((res) => {
-        console.log(res)
+      //  console.log(res)
 
         if (res.status === 200) {
           alertify.success("Mail silindi.")
@@ -142,7 +142,7 @@ const Inbox = () => {
       })
     } else if (mail.repeatingLogId !== null) {
       deleteRepeatingEmail(mail.id).then((res) => {
-        console.log(res)
+       // console.log(res)
 
         if (res.status === 200) {
           alertify.success("Mail silindi.")
@@ -151,7 +151,7 @@ const Inbox = () => {
       })
     } else
       deleteSentEmail(mail.id).then((res) => {
-        console.log(res)
+        //console.log(res)
 
         if (res.status === 200) {
           alertify.success("Mail silindi.")
@@ -176,7 +176,7 @@ const Inbox = () => {
     } else {
       formData == []
     }
-    console.log("values:", values, "form data ", formData)
+    //console.log("values:", values, "form data ", formData)
     replyMail(values, formData).then((res) => {
       setMail(res.data.emailLog)
 
@@ -184,7 +184,7 @@ const Inbox = () => {
         alertify.success("Mail gönderildi")
       } else alertify.error("Gönderme başarısız oldu")
     })
-    console.log(answer)
+   // console.log(answer)
     navigate()
   }
 
@@ -200,7 +200,7 @@ const Inbox = () => {
     }
     console.log("handleForward'ın içindesin")
     forwardEmail(values).then((res) => {
-      console.log("forward mail fonksiyonunun içindesin")
+      //console.log("forward mail fonksiyonunun içindesin")
       if (res.status === 201) {
         alertify.success("Mail iletildi")
       } else alertify.error(res.message)
