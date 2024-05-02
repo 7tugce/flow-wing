@@ -387,7 +387,9 @@ const Inbox = () => {
       <div className="mail-title">
         <p>{mail.emailSubject}</p>
       </div>
-      <p dangerouslySetInnerHTML={{ __html: getText(mail.sentEmailBody) }} />
+      <div className="mail-body" dangerouslySetInnerHTML={{ __html: getText(mail.sentEmailBody) }} style={{ width: '90%' }} />
+
+
       {/* MAIL ATTACHMENT SECTION */}
       <div className="mail-attachments">
         {/* ATTACHMENT */}

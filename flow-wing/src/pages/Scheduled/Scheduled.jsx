@@ -27,7 +27,7 @@ const Scheduled = () => {
   })
 
   const handleChange = (value) => {
-    console.log(`selected ${value}`)
+    //console.log(`selected ${value}`)
   }
   return (
     <div className="compose-page-content">

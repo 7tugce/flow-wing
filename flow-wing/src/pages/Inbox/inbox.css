@@ -3,6 +3,7 @@
   flex-direction: column;
   align-items: flex-start;
   margin: 20px;
+  width: 90%;
 }
 
 .inbox-mail-summary span {
@@ -125,4 +126,7 @@
   width: 60px;
   height: 35px;
   margin-left: 20px;
+}
+.mail-body{
+  overflow-x: scroll;
 }
